@@ -1,0 +1,137 @@
+:root {
+  /* --text-default-size: 16; */
+  /* --text-base-size: 16; */
+  /* --text-base: calc(16px/var(--text-default-size)*var(--text-base-size)); */
+  --color-white: "#fff";
+  --color-brown: "#544502";
+  --color-yellow: "#ffcd00";
+  --header-height: 114px;
+  --header-margin: 10px;
+  --font-family: "SofiaPro";
+  --header-bg-color: var(--color-white);
+  --header-text-color: var(--color-brown);
+  --text-base: ;
+  --x: "50";
+  --y: "50";
+}
+
+@font-face {
+  font-family: "SofiaPro-Black";
+  src: url("../public/SofiaPro-Black.woff2");
+  /* font-weight:bold; */
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "SofiaPro-Bold";
+  src: url("../public/SofiaPro-Bold.woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "SofiaPro-Medium";
+  src: url("../public/SofiaPro-Medium.woff2");
+  /* font-weight:medium; */
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "SofiaPro";
+  src: url("../public/SofiaPro-Regular.woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "SofiaPro-SemiBold";
+  src: url("../public/SofiaPro-SemiBold.woff2");
+  font-weight: 600;
+}
+
+body {
+  font-family: var(--font-family);
+}
+
+.header {
+  height: var(--header-height);
+  background-color: var(--color-yellow);
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.header_menu_el {
+  color: var(--color-brown);
+}
+
+/* pas présent dans tailwind.css */
+.text-right {
+  text-align: right;
+}
+
+.text1 {
+  opacity: 0;
+}
+
+.text2 {
+  opacity: 0;
+}
+
+.text3 {
+  opacity: 0;
+}
+
+.blueLetter {
+  color: #0226aa;
+}
+
+.whiteLetter {
+  color: #fff;
+}
+
+.circle {
+  border: 2px solid red;
+  background-color: #ffffff;
+  height: 100px;
+  border-radius: 50%;
+  width: 100px;
+}
+/* Carousel */
+
+.carousel-pager{
+  position:fixed;
+  bottom:10vh;
+  left:40vw;
+  width:100%;
+  margin:0 auto;
+  z-index:10000;
+}
+
+
+.active .carousel-pager-item {
+  width: 4px;
+  height: 40px;
+  /* background-color: #fff; */
+}
+
+.carousel-pager-item {
+  width: 2px;
+  height: 20px;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: height 1s ease;
+}
+
+.carousel-pager button {
+  position: relative;
+  padding: 0 8px;
+  margin: 0 2px;
+  border: 0;
+  background-color: transparent;
+  text-decoration: none;
+  transform: rotate(15deg);
+  cursor: pointer;
+  z-index:10000;
+}
+
+
+
+
