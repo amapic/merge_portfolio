@@ -20,7 +20,7 @@ export default function Navv() {
         style={{
           cursor: "pointer",
         }}
-        href="/siteWeb1/index.html"
+        href="/siteWeb1"
       >
         {/* <img height="100%" width="50vh" src="/agap2/fleche_gauche.svg" /> */}
         <svg width="50px" height="83px" viewBox="0 0 23 38">
@@ -37,7 +37,7 @@ export default function Navv() {
         style={{
           cursor: "pointer",
         }}
-        href="/planet/index.html"
+        href="/planet"
       >
         <svg width="50px" height="83px" viewBox="0 0 23 38">
           <g>
@@ -64,7 +64,7 @@ export function Carousel() {
 
   return (
     <div data-v-07142c5e="" className="carousel-agap2-pager">
-      <a href="/index.html">
+      <a href="/index">
         <button
           className={isActive == 0 ? "active" : ""} 
           onClick={() => handleClick(0)}
@@ -72,7 +72,7 @@ export function Carousel() {
           <div className="carousel-agap2-pager-item pathnav"></div>
         </button>
       </a>
-      <a href="/siteWeb1/index.html">
+      <a href="/siteWeb1">
         <button
           className={isActive == 1 ? "active" : ""}
           onClick={() => handleClick(1)}
@@ -80,7 +80,7 @@ export function Carousel() {
           <div className="carousel-agap2-pager-item"></div>
         </button>
       </a>
-      <a href="/agap2/agap2.html">
+      <a href="/agap2">
         <button
           className={isActive == 2 ? "active" : ""}
           onClick={() => handleClick(2)}
@@ -88,7 +88,7 @@ export function Carousel() {
           <div className="carousel-agap2-pager-item"></div>
         </button>
       </a>
-      <a href="/planet/index.html">
+      <a href="/planet">
         <button
           className={isActive == 3 ? "active" : ""}
           onClick={() => handleClick(3)}

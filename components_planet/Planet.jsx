@@ -14,7 +14,7 @@ import { TextureLoader } from "three/src/loaders/TextureLoader";
 import TextPlanet from "./TextPlanet";
 
 import { debounce } from "lodash";
-import { usePlanetStore } from "../pages/index";
+import { usePlanetStore } from "../pages/planet";
 
 import { useRouter } from 'next/router'
 
@@ -25,15 +25,15 @@ import { useRouter } from 'next/router'
 
 export default function Planet({ compteur, image,imageData, ...args }) {
 
-  const colorMap = [
-    useLoader(TextureLoader, "/planet/image/earth.jpg"),
-    useLoader(TextureLoader, "/planet/image/mars.jpg"),
-    useLoader(TextureLoader, "/planet/image/mercure.jpg"),
-    useLoader(TextureLoader, "/planet/image/neptune.jpg"),
-    useLoader(TextureLoader, "/planet/image/moon.jpg"),
-    useLoader(TextureLoader, "/planet/image/jupiter.jpg"),
-    useLoader(TextureLoader, "/planet/image/venus.jpg"),
-    useLoader(TextureLoader, "/planet/image/uranus.jpg"),
+  const colorMap = [usePlanetStore,
+    useLoader(TextureLoader, "/planet/earth.jpg"),
+    useLoader(TextureLoader, "/planet/mars.jpg"),
+    useLoader(TextureLoader, "/planet/mercure.jpg"),
+    useLoader(TextureLoader, "/planet/neptune.jpg"),
+    useLoader(TextureLoader, "/planet/moon.jpg"),
+    useLoader(TextureLoader, "/planet/jupiter.jpg"),
+    useLoader(TextureLoader, "/planet/venus.jpg"),
+    useLoader(TextureLoader, "/planet/uranus.jpg"),
   ];
 
   // console.log(useRouter())

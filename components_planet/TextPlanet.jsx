@@ -35,9 +35,6 @@ export default function TextPlanet({
   const myMeshText4 = useRef();
   const myMesh2 = useRef();
 
-  if (!star && clickedd){
-    // console.log(image)
-  }
 
   const points = [];
   points.push(new THREE.Vector3(0, 0, 0));
@@ -64,14 +61,14 @@ export default function TextPlanet({
       {(star && centre) ? (
         <>
           <mesh
-            position={[0, 2, 0.01]}
+            position={[0, 1.6, 0.01]}
             scale={[4, 5, 2]}
             ref={myMeshText4}
             transparent={clickedd ? false : true}
             opacity={clickedd ? 1 : 0}
           >
             <Text
-              scale={[1, 1, 1]}
+              scale={[0.13, 0.13, 0.13]}
               anchorX="center" // default
               anchorY="middle" // default
               color="white"
@@ -85,14 +82,14 @@ export default function TextPlanet({
             </Text>
           </mesh>
           <mesh
-            position={[0, 2.5, 0.01]}
+            position={[0, 2.2, 0.01]}
             scale={[4, 5, 2]}
             ref={myMeshText}
             transparent={clickedd ? false : true}
             opacity={clickedd ? 1 : 0}
           >
             <Text
-              scale={[1, 1, 1]}
+              scale={[0.13, 0.13, 0.13]}
               anchorX="center" // default
               anchorY="middle" // default
               color="white"
@@ -106,36 +103,31 @@ export default function TextPlanet({
             </Text>
           </mesh>
           <mesh
-            position={[0, 3, 0.01]}
+            position={[0, 2.8, 0.01]}
             scale={[4, 5, 2]}
             ref={myMeshText2}
             transparent={clickedd ? false : true}
             opacity={clickedd ? 1 : 0}
           >
             <Text
-              scale={[1, 1, 1]}
+              scale={[0.13, 0.13, 0.13]}
               anchorX="center" // default
               anchorY="middle" // default
               color="white"
-              // ref={myMesh}
-              // fillOpacity={hoveredd ? 1 : 0}
               toneMapped={false}
-              // transparent={star ? true : false}
             >
-              {/* {clickedd ? "cliqué" : ""} */}
               {text2?"Age : " + text2 + " milliard d'année":""}
-              {/* {"Age : " + text2} */}
             </Text>
           </mesh>
           <mesh
-            position={[0, 3.5, 0.01]}
+            position={[0, 3.4, 0.01]}
             scale={[4, 5, 2]}
             ref={myMeshText3}
             transparent={clickedd ? false : true}
             opacity={clickedd ? 1 : 0}
           >
             <Text
-              scale={[1, 1, 1]}
+              scale={[0.13, 0.13, 0.13]}
               anchorX="center" // default
               anchorY="middle" // default
               color="white"
@@ -160,7 +152,7 @@ export default function TextPlanet({
           opacity={clickedd ? 1 : 0}
         >
           <Text
-            scale={[1, 1, 1]}
+            scale={[0.08, 0.08, 0.08]}
             anchorX="center" // default
             anchorY="middle" // default
             color="white"
@@ -177,7 +169,7 @@ export default function TextPlanet({
           opacity={clickedd ? 1 : 0}
         >
           <Text
-            scale={[1, 1, 1]}
+            scale={[0.08, 0.08, 0.08]}
             anchorX="center" // default
             anchorY="middle" // default
             color="white"
@@ -194,7 +186,7 @@ export default function TextPlanet({
           opacity={clickedd ? 1 : 0}
         >
           <Text
-            scale={[1, 1, 1]}
+            scale={[0.08, 0.08, 0.08]}
             anchorX="center" // default
             anchorY="middle" // default
             color="white"
@@ -211,7 +203,7 @@ export default function TextPlanet({
           opacity={clickedd ? 1 : 0}
         >
           <Text
-            scale={[1, 1, 1]}
+            scale={[0.08, 0.08, 0.08]}
             anchorX="center" // default
             anchorY="middle" // default
             color="white"

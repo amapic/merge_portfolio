@@ -9,7 +9,12 @@ import ParralaxBackground, {
 
 import Navv, { Carousel } from "../components_siteWeb1/Navv";
 
-// import purify from "purify-css"
+import TransitionProvider, {
+  TransitionLayout,
+  FadeInOut,
+  AnimateInOut,
+} from "./../context";
+
 
 const Home = () => {
   const mouse = useRef(null);
@@ -118,170 +123,184 @@ const Home = () => {
 
   return (
     <>
-      <Head>
-        <title>Book A.PICHAT</title>
-        <link rel="shortcut icon" href="/siteWeb1/favicon.ico" />
-      </Head>
-      <Navv />
-      <Carousel />
-      <div ref={mouse} id="mousemove">
-        <div id="cercle1"></div>
-        <div id="cercle2"></div>
-      </div>
-      <header
-        id="header"
-        className="shadow bg-white w-100 h-15 position-fixed top-0 left-0 "
-      >
-        <div
-          className="row mx-0 h-100 w-100 justify-content-between"
-          style={{
-            height: "66px",
-          }}
-        >
-          <div className="col-3">
-            <img
-              className="pt-2 imgtitle"
-              src="/agap2/siteWeb1/title.svg"
-              style={{
-                height: "60px",
-              }}
-            />
-          </div>
-          <div className="col-3 mx-0 px-0">
-            <nav className="h-100 w-100 d-flex flex-row justify-content-center align-items-center">
-              <div
-                id="contact"
-                className="w-100 h-100 d-flex justify-content-center align-items-center d-none d-sm-flex"
-              >
-                Contact
+      <TransitionProvider>
+        <TransitionLayout>
+          <FadeInOut>
+            <AnimateInOut>
+              <Head>
+                <title>Book A.PICHAT</title>
+                <link rel="shortcut icon" href="/siteWeb1/favicon.ico" />
+              </Head>
+              <Navv />
+              <Carousel />
+              <div ref={mouse} id="mousemove">
+                <div id="cercle1"></div>
+                <div id="cercle2"></div>
               </div>
-              <div
-                id="menu"
-                className="bg-brown w-100 h-100 text-center d-inline align-middle"
+              <header
+                id="header"
+                className="shadow bg-white w-100 h-15 position-fixed top-0 left-0 "
               >
-                Menu
-              </div>
-            </nav>
-          </div>
-        </div>
-      </header>
-      {/* <body
+                <div
+                  className="row mx-0 h-100 w-100 justify-content-between"
+                  style={{
+                    height: "66px",
+                  }}
+                >
+                  <div className="col-3">
+                    <img
+                      className="pt-2 imgtitle"
+                      src="/siteWeb1/title.svg"
+                      style={{
+                        height: "60px",
+                      }}
+                    />
+                  </div>
+                  <div className="col-3 mx-0 px-0">
+                    <nav className="h-100 w-100 d-flex flex-row justify-content-center align-items-center">
+                      <div
+                        id="contact"
+                        className="w-100 h-100 d-flex justify-content-center align-items-center d-none d-sm-flex"
+                      >
+                        Contact
+                      </div>
+                      <div
+                        id="menu"
+                        className="bg-brown w-100 h-100 text-center d-inline align-middle"
+                      >
+                        Menu
+                      </div>
+                    </nav>
+                  </div>
+                </div>
+              </header>
+              {/* <body
         className="w-100"
         > */}
 
-      <div id="content" className="parralax">
-        <ParralaxBackground />
-        <div className="part1">
-          <div className="px-3 container mx-auto d-flex flex-column h-100">
-            <div className="d-flex flex-row row h-100">
-              <div className="col col-12 col-xl-8">
-                <h5 className="title text-justify">{textte[0]}</h5>
-                <p className="title aclonica text-justify">
-                  <h1>{textte[1]}</h1>
-                </p>
-                <p className="title text-justify">{textte[2]}</p>
-              </div>
-              <div
-                className="col col-4 mx-auto d-none d-xl-block"
-                style={{
-                  zIndex: "10",
-                }}
-              >
-                <img
-                  className="h-75 fadeIn animated"
-                  src="/agap2/siteWeb1/main.svg"
-                  style={{
-                    zIndex: "20",
-                    position: "relative",
-                  }}
-                />
-              </div>
-            </div>
-            <div className="h-100 w-50 w-sm-75 mx-auto">
-              <div className="my-auto mh-25 bg-blue-light p-3 mt-3 rounded text-center text-white">
-                <h3>{textte[3]}</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="part2 bg-grey pb-5">
-          {/* <div className="jauge my-2 position-absolute flex-column">
+              <div id="content" className="parralax">
+                <ParralaxBackground />
+                <div className="part1">
+                  <div className="px-3 container mx-auto d-flex flex-column h-100">
+                    <div className="d-flex flex-row row h-100">
+                      <div className="col col-12 col-xl-8">
+                        <h5 className="title text-justify">{textte[0]}</h5>
+                        <p className="title aclonica text-justify">
+                          <h1>{textte[1]}</h1>
+                        </p>
+                        <p className="title text-justify">{textte[2]}</p>
+                      </div>
+                      <div
+                        className="col col-4 mx-auto d-none d-xl-block"
+                        style={{
+                          zIndex: "10",
+                        }}
+                      >
+                        <img
+                          className="h-75 fadeIn animated"
+                          src="/siteWeb1/main.svg"
+                          style={{
+                            zIndex: "20",
+                            position: "relative",
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="h-100 w-50 w-sm-75 mx-auto">
+                      <div className="my-auto mh-25 bg-blue-light p-3 mt-3 rounded text-center text-white">
+                        <h3>{textte[3]}</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="part2 bg-grey pb-5">
+                  {/* <div className="jauge my-2 position-absolute flex-column">
               <div className="bg-yellow p-1 m-1 row rounded h-25 w-100"></div>
               <div className="bg-yellow p-1 m-1  rounded row h-25 w-100"></div>
               <div className="bg-yellow p-1 m-1  rounded row h-25 w-100"></div>
               <div className="bg-yellow p-1 m-1  rounded row h-25 w-100"></div>
             </div> */}
-          <div className="container w-100 mx-auto d-flex flex-column">
-            <div className="row">
-              <h1 className="ps-4">{textte[3]}</h1>
-              <div>
-                <img
-                  src="/agap2/siteWeb1/darkBrownSquare.png"
-                  height={"50px"}
-                  width={"50px"}
-                  className="position-absolute"
-                  style={{
-                    transform: "rotate(35deg) scale(0.5)",
-                    left: "0vh",
-                    top: "-40px",
-                    zIndex: "20",
-                  }}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12 col-lg-6 card1 cardd">
-                <div className="shadow p-3 m-2 bg-white rounded w-100 h-100">
-                  <div className="d-flex flex-row w-100">
-                    <img className="imglogo mt-2" src="/siteWeb1/budget.png" />
+                  <div className="container w-100 mx-auto d-flex flex-column">
+                    <div className="row">
+                      <h1 className="ps-4">{textte[3]}</h1>
+                      <div>
+                        <img
+                          src="/siteWeb1/darkBrownSquare.png"
+                          height={"50px"}
+                          width={"50px"}
+                          className="position-absolute"
+                          style={{
+                            transform: "rotate(35deg) scale(0.5)",
+                            left: "0vh",
+                            top: "-40px",
+                            zIndex: "20",
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-12 col-lg-6 card1 cardd">
+                        <div className="shadow p-3 m-2 bg-white rounded w-100 h-100">
+                          <div className="d-flex flex-row w-100">
+                            <img
+                              className="imglogo mt-2"
+                              src="/siteWeb1/budget.png"
+                            />
 
-                    <h2 className="ps-3 mb-4">{textte[4]}</h2>
+                            <h2 className="ps-3 mb-4">{textte[4]}</h2>
+                          </div>
+
+                          <h6>{textte[5]}</h6>
+                        </div>
+                      </div>
+                      <div className=" col-12 col-lg-6 card2 cardd">
+                        <div className="shadow p-3 m-2 bg-white rounded w-100 h-100">
+                          <div className="d-flex flex-row w-100">
+                            <img
+                              className="imglogo mt-2"
+                              src="/siteWeb1/report.png"
+                            />
+
+                            <h2 className="ps-3 mb-4">{textte[6]}</h2>
+                          </div>
+
+                          <h6>{textte[7]}</h6>
+                        </div>
+                      </div>
+                      <div className="col-12 col-lg-6 card3 cardd">
+                        <div className="shadow p-3 m-2 bg-white rounded w-100 h-100">
+                          <div className="d-flex flex-row w-100">
+                            <img
+                              className="imglogo mt-2"
+                              src="/siteWeb1/business.png"
+                            />
+
+                            <h2 className="ps-3 mb-4">{textte[8]}</h2>
+                          </div>
+                          <h6>{textte[9]}</h6>
+                        </div>
+                      </div>
+                      <div className=" col-12 col-lg-6 card4 cardd">
+                        <div className="shadow p-3 m-2 bg-white rounded w-100 h-100">
+                          <div className="d-flex flex-row w-100">
+                            <img
+                              className="imglogo mt-2"
+                              src="/siteWeb1/analytics.png"
+                            />
+
+                            <h2 className="ps-3 mb-4">{textte[10]}</h2>
+                          </div>
+                          <h6>{textte[11]}</h6>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-
-                  <h6>{textte[5]}</h6>
                 </div>
               </div>
-              <div className=" col-12 col-lg-6 card2 cardd">
-                <div className="shadow p-3 m-2 bg-white rounded w-100 h-100">
-                  <div className="d-flex flex-row w-100">
-                    <img className="imglogo mt-2" src="/siteWeb1/report.png" />
-
-                    <h2 className="ps-3 mb-4">{textte[6]}</h2>
-                  </div>
-
-                  <h6>{textte[7]}</h6>
-                </div>
-              </div>
-              <div className="col-12 col-lg-6 card3 cardd">
-                <div className="shadow p-3 m-2 bg-white rounded w-100 h-100">
-                  <div className="d-flex flex-row w-100">
-                    <img
-                      className="imglogo mt-2"
-                      src="/agap2/siteWeb1/business.png"
-                    />
-
-                    <h2 className="ps-3 mb-4">{textte[8]}</h2>
-                  </div>
-                  <h6>{textte[9]}</h6>
-                </div>
-              </div>
-              <div className=" col-12 col-lg-6 card4 cardd">
-                <div className="shadow p-3 m-2 bg-white rounded w-100 h-100">
-                  <div className="d-flex flex-row w-100">
-                    <img
-                      className="imglogo mt-2"
-                      src="/agap2/siteWeb1/analytics.png"
-                    />
-
-                    <h2 className="ps-3 mb-4">{textte[10]}</h2>
-                  </div>
-                  <h6>{textte[11]}</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            </AnimateInOut>
+          </FadeInOut>
+        </TransitionLayout>
+      </TransitionProvider>
     </>
   );
 };

@@ -1,7 +1,8 @@
 @font-face {
   font-family: "scifi";
-  /* src: url("../public/overthere.ttf") format("truetype"); */
-  src: url("../public/525-SQUA.TTF") format("truetype");
+  src: url("/static/525-SQUA.TTF") format("truetype");
+  /* font-weight: normal; */
+  /* font-style: normal; */
 }
 
 .semi-circle {
@@ -12,13 +13,13 @@
   /* background-color: black; */
 }
 
-.carousel-pager{
-  position:fixed;
-  bottom:10vh;
-  left:40vw;
-  width:100%;
-  margin:0 auto;
-  z-index:10000;
+.carousel-pager {
+  position: fixed;
+  bottom: 10vh;
+  left: 40vw;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 10000;
 }
 
 
@@ -45,5 +46,5 @@
   text-decoration: none;
   transform: rotate(15deg);
   cursor: pointer;
-  z-index:10000;
+  z-index: 10000;
 }

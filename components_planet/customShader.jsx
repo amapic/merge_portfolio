@@ -8,7 +8,7 @@ import { useRef } from "react";
 
 import { Shaders, Node, GLSL } from "gl-react";
 
-import React from "react"
+import React from "react";
 const shaders = Shaders.create({
   helloBlue: {
     frag: GLSL`
@@ -22,11 +22,11 @@ void main() {
 });
 
 export class HelloBlue extends React.Component {
-    render() {
-      const { blue } = this.props;
-      return <Node shader={shaders.helloBlue} uniforms={{ blue }} />;
-    }
+  render() {
+    const { blue } = this.props;
+    return <Node shader={shaders.helloBlue} uniforms={{ blue }} />;
   }
+}
 
 // const customMaterial = new THREE.MeshPhongMaterial({
 //   shininess: 100,

@@ -11,7 +11,7 @@ export default function Carousel() {
 
   return (
     <div data-v-07142c5e="" className="carousel-pager">
-      <a href="/index.html">
+      <a href="/agap2">
         <button
           className={isActive == 0 ? "active" : ""}
           onClick={() => handleClick(0)}
@@ -19,7 +19,7 @@ export default function Carousel() {
           <div className="carousel-pager-item"></div>
         </button>
       </a>
-      <a href="/siteWeb1/index.html">
+      <a href="/siteWeb1">
         <button
           className={isActive == 1 ? "active" : ""}
           onClick={() => handleClick(1)}
@@ -27,7 +27,7 @@ export default function Carousel() {
           <div className="carousel-pager-item"></div>
         </button>
       </a>
-      <a href="/agap2/agap2.html">
+      <a href="/agap2">
         <button
           className={isActive == 2 ? "active" : ""}
           onClick={() => handleClick(2)}
@@ -35,7 +35,7 @@ export default function Carousel() {
           <div className="carousel-pager-item"></div>
         </button>
       </a>
-      <a href="/planet/index.html">
+      <a href="/planet">
       <button
         className={isActive == 3 ? "active" : ""}
         onClick={() => handleClick(3)}

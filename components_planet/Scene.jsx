@@ -9,9 +9,9 @@ import Systeme from "./Systeme";
 
 import Data from "premierTri.json";
 
-import { AppContext, useDeplacementStore } from "../pages/index";
+import { AppContext, useDeplacementStore } from "../pages/planet";
 
-import { usePlanetStore } from "../pages/index";
+import { usePlanetStore } from "../pages/planet";
 
 
 

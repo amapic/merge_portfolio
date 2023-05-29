@@ -9,7 +9,7 @@ import React, {
 // import Player from "../components_planet/audio";
 
 import { Canvas, extend } from "@react-three/fiber";
-
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 import { isMobile } from "react-device-detect";
@@ -30,8 +30,6 @@ import {
   Text3D,
 } from "@react-three/drei";
 
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
-
 import { Debug, Physics, usePlane, useSphere } from "@react-three/cannon";
 
 import { UnrealBloomPass, WaterPass } from "three-stdlib";
@@ -50,7 +48,23 @@ extend({ UnrealBloomPass });
 
 import { create } from "zustand";
 
+import TransitionProvider, {
+  TransitionLayout,
+  FadeInOut,
+  AnimateInOut,
+  CuubeCanvas,
+} from "../context";
+
 export const AppContext = createContext();
+
+import { Html, useProgress } from '@react-three/drei'
+
+// import styles from 'styles/planet.module.css';
+
+// function Loader() {
+//   const { progress } = useProgress()
+//   return <Html center>{progress} % loaded</Html>
+// }
 
 const App = () => {
   // const cam = useRef();
@@ -121,22 +135,28 @@ const App = () => {
 
   return (
     <>
-      {/* {true ? ( */}
-      <>
-        {/* <Player /> */}
-        <div
-          style={{
-            height: "100vh",
-            width: "100vw",
-            backgroundColor: "#252934",
-            // display: _isMobile?"none":"block" ,
-          }}
-        >
-          <PanelGauche />
+      <CuubeCanvas />
+      {/* <Canvas> */}
+      <TransitionProvider>
+        <TransitionLayout>
+          <FadeInOut>
+          
+            {/* {true ? ( */}
+            <>
+              {/* <Player /> */}
+              <div
+                style={{
+                  height: "100vh",
+                  width: "100vw",
+                  backgroundColor: "#252934",
+                  // display: _isMobile?"none":"block" ,
+                }}
+              >
+                <PanelGauche />
 
-          <Carousel />
-          <Navv />
-          {/* <div
+                <Carousel />
+                <Navv />
+                {/* <div
               style={{
                 height: "15vh",
                 width: "40vh",
@@ -160,42 +180,43 @@ const App = () => {
                  href="http://46.101.250.41:4000/siteWeb1/index.html"><img height="100%" width="50vh" src="/planet/image/fleche_droit.svg"/></a>
               </div>  */}
 
-          <Canvas
-            // concurrent="true"
-            // dpr={[1, 2]}
-            gl={{ antialias: false }}
-            camera={{
-              near: 0.1,
-              far: 50,
-              zoom: 1,
-              position: [4, 4, 4],
-              maxPolarAngle: 0.85,
-            }}
-            onCreated={({ gl, camera }) => {
-              gl.setClearColor("#252934", 0);
-              // gl.setClearColor("#000", 1);
-              // 252934
-              camera.lookAt(0, 0, 0);
-              // camera.position.set(4, 4, 4);
+                <Canvas
+                  // concurrent="true"
+                  // dpr={[1, 2]}
+                  gl={{ antialias: false }}
+                  camera={{
+                    near: 0.1,
+                    far: 50,
+                    zoom: 1,
+                    position: [4, 4, 4],
+                    maxPolarAngle: 0.85,
+                  }}
+                  onCreated={({ gl, camera }) => {
+                    gl.setClearColor("#252934", 0);
+                    // gl.setClearColor("#000", 1);
+                    // 252934
+                    camera.lookAt(0, 0, 0);
+                    // camera.position.set(4, 4, 4);
 
-              camera.position.set(10, 3, 10);
-            }}
-          >
-            {/* <Suspense fallback={null}> */}
-            <EffectComposer>
-              <Bloom
-                luminanceThreshold={luminanceThreshold}
-                luminanceSmoothing={luminanceSmoothing}
-                // height={300},
-                mipmapBlur={true}
-                intensity={intensity}
-                radius={radius}
-              />
-            </EffectComposer>
-            {/* <sprite position={[1, 2, 3]}>
+                    camera.position.set(10, 3, 10);
+                  }}
+                >
+                  {/* <Suspense fallback={null}> */}
+                  {/* <Suspense fallback={<Loader />}> */}
+                  <EffectComposer>
+                    <Bloom
+                      luminanceThreshold={luminanceThreshold}
+                      luminanceSmoothing={luminanceSmoothing}
+                      // height={300},
+                      mipmapBlur={true}
+                      intensity={intensity}
+                      radius={radius}
+                    />
+                  </EffectComposer>
+                  {/* <sprite position={[1, 2, 3]}>
               <Spprite />
             </sprite> */}
-            {/* <Hud>
+                  {/* <Hud>
               <EffectComposer>
                 <Bloom
                   luminanceThreshold={luminanceThreshold}
@@ -208,8 +229,8 @@ const App = () => {
               </EffectComposer>
               <PerspectiveCamera makeDefault position={[0, 0, 10]} />
             </Hud> */}
-            {/* <FrameLimiter /> */}
-            {/* <FPSLimiter /> 
+                  {/* <FrameLimiter /> */}
+                  {/* <FPSLimiter /> 
             // <Effects disableGamma>
             //   <unrealBloomPass
             //     threshold={1}
@@ -217,133 +238,133 @@ const App = () => {
             //     radius={radius}
             //   />
             // </Effects>*/}
-            {/* <Line position={[0, 0, 0]} /> */}
-            {/* <BoxBlendGeometry /> */}
-            {/* <Prout /> */}
-            {/* <Stats /> */}
-            <OrbitControls
-              // maxPolarAngle={0.85}
-              maxDistance={20}
-            />
-            <Stars
-              radius={100}
-              depth={50}
-              count={5000}
-              factor={4}
-              saturation={0}
-              fade
-              speed={1}
-            />
+                  {/* <Line position={[0, 0, 0]} /> */}
+                  {/* <BoxBlendGeometry /> */}
+                  {/* <Prout /> */}
+                  {/* <Stats /> */}
+                  <OrbitControls
+                    // maxPolarAngle={0.85}
+                    maxDistance={20}
+                  />
+                  <Stars
+                    radius={100}
+                    depth={50}
+                    count={5000}
+                    factor={4}
+                    saturation={0}
+                    fade
+                    speed={1}
+                  />
 
-            <Physics allowSleep={false} gravity={[0, 0, 0]}>
-              <Scene />
-            </Physics>
-            {/* </Suspense> */}
-          </Canvas>
-        </div>
-        <div
-          style={{
-            position: "fixed",
-            bottom: "10vh",
-            left: "10vh",
-            height: "20vh",
-            width: "20vh",
-            backgroundColor: "rgba(0, 0, 0, 0)",
-            cursor: "pointer",
-            display: _isMobile ? "none" : "block",
-          }}
-          onClick={() => {
-            if (nActive > 0) {
-              onClickGauche();
-            }
-          }}
-        >
-          <Canvas
-            orthographic
-            camera={{
-              near: 0.1,
-              far: 10,
-              zoom: 25,
-              position: [0.2, 0, 0],
-            }}
-          >
-            <EffectComposer>
-              <Bloom
-                luminanceThreshold={luminanceThreshold}
-                luminanceSmoothing={luminanceSmoothing}
-                // height={300},
-                mipmapBlur={true}
-                intensity={intensity}
-                radius={radius}
-              />
-            </EffectComposer>
-            <Carre
-              flecheGauche={true}
-              flecheDroite={false}
-              position={[0, -2, -2]}
-            />
-            <Fleche
-              flecheGauche={true}
-              flecheDroite={false}
-              position={[0, -1.5, -1.5]}
-              rotation={[0, 0, 0]}
-            />
-          </Canvas>
-        </div>
-        <div
-          style={{
-            position: "fixed",
-            bottom: "10vh",
-            right: "10vh",
-            height: "20vh",
-            width: "20vh",
-            backgroundColor: "rgba(0, 0, 0, 0)",
-            cursor: "pointer",
-            display: _isMobile ? "none" : "block",
-          }}
-          onClick={() => {
-            if (nActive < 5) {
-              onClickDroite();
-            }
-          }}
-        >
-          <Canvas
-            orthographic
-            camera={{
-              near: 0.1,
-              far: 10,
-              zoom: 25,
-              position: [0.2, 0, 0],
-            }}
-          >
-            <EffectComposer>
-              <Bloom
-                luminanceThreshold={luminanceThreshold}
-                luminanceSmoothing={luminanceSmoothing}
-                // height={300},
-                mipmapBlur={true}
-                intensity={intensity}
-                radius={radius}
-              />
-            </EffectComposer>
-            <Carre
-              flecheDroite={true}
-              flecheGauche={false}
-              position={[0, -2, -2]}
-            />
-            <Fleche
-              flecheDroite={true}
-              flecheGauche={false}
-              position={[0, 1.5, 1.5]}
-              rotation={[Math.PI, 0, 0]}
-            />
+                  <Physics allowSleep={false} gravity={[0, 0, 0]}>
+                    <Scene />
+                  </Physics>
+                  {/* </Suspense> */}
+                </Canvas>
+              </div>
+              <div
+                style={{
+                  position: "fixed",
+                  bottom: "10vh",
+                  left: "10vh",
+                  height: "20vh",
+                  width: "20vh",
+                  backgroundColor: "rgba(0, 0, 0, 0)",
+                  cursor: "pointer",
+                  display: _isMobile ? "none" : "block",
+                }}
+                onClick={() => {
+                  if (nActive > 0) {
+                    onClickGauche();
+                  }
+                }}
+              >
+                <Canvas
+                  orthographic
+                  camera={{
+                    near: 0.1,
+                    far: 10,
+                    zoom: 25,
+                    position: [0.2, 0, 0],
+                  }}
+                >
+                  <EffectComposer>
+                    <Bloom
+                      luminanceThreshold={luminanceThreshold}
+                      luminanceSmoothing={luminanceSmoothing}
+                      // height={300},
+                      mipmapBlur={true}
+                      intensity={intensity}
+                      radius={radius}
+                    />
+                  </EffectComposer>
+                  <Carre
+                    flecheGauche={true}
+                    flecheDroite={false}
+                    position={[0, -2, -2]}
+                  />
+                  <Fleche
+                    flecheGauche={true}
+                    flecheDroite={false}
+                    position={[0, -1.5, -1.5]}
+                    rotation={[0, 0, 0]}
+                  />
+                </Canvas>
+              </div>
+              <div
+                style={{
+                  position: "fixed",
+                  bottom: "10vh",
+                  right: "10vh",
+                  height: "20vh",
+                  width: "20vh",
+                  backgroundColor: "rgba(0, 0, 0, 0)",
+                  cursor: "pointer",
+                  display: _isMobile ? "none" : "block",
+                }}
+                onClick={() => {
+                  if (nActive < 5) {
+                    onClickDroite();
+                  }
+                }}
+              >
+                <Canvas
+                  orthographic
+                  camera={{
+                    near: 0.1,
+                    far: 10,
+                    zoom: 25,
+                    position: [0.2, 0, 0],
+                  }}
+                >
+                  <EffectComposer>
+                    <Bloom
+                      luminanceThreshold={luminanceThreshold}
+                      luminanceSmoothing={luminanceSmoothing}
+                      // height={300},
+                      mipmapBlur={true}
+                      intensity={intensity}
+                      radius={radius}
+                    />
+                  </EffectComposer>
+                  <Carre
+                    flecheDroite={true}
+                    flecheGauche={false}
+                    position={[0, -2, -2]}
+                  />
+                  <Fleche
+                    flecheDroite={true}
+                    flecheGauche={false}
+                    position={[0, 1.5, 1.5]}
+                    rotation={[Math.PI, 0, 0]}
+                  />
 
-            {/* <BoxBlendGeometry position={[0, 0, 0]} /> */}
-          </Canvas>
-        </div>
-      </>
-      {/* ) : ( */}
-      {/* <div
+                  {/* <BoxBlendGeometry position={[0, 0, 0]} /> */}
+                </Canvas>
+              </div>
+            </>
+            {/* ) : ( */}
+            {/* <div
             style={{
               backgroundColor: "white",
               height: "100vh",
@@ -356,6 +377,11 @@ const App = () => {
           >
             Site non prévu pour Smartphone
           </div> */}
+            {/* </Suspense> */}
+          </FadeInOut>
+        </TransitionLayout>
+      </TransitionProvider>
+      {/* </Canvas> */}
     </>
   );
 };

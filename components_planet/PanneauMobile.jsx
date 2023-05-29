@@ -2,7 +2,7 @@ import { getMiddlewareRouteMatcher } from "next/dist/shared/lib/router/utils/mid
 import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 
-import { useDeplacementStore, usePlanetStore } from "../pages/index";
+import { useDeplacementStore, usePlanetStore } from "../pages/agap2";
 import { create } from "zustand";
 
 import { Draggable } from "gsap/dist/Draggable";

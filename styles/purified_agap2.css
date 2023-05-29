@@ -116,7 +116,7 @@ body {
 
 /* Carousel */
 
-.carousel-agap2pager {
+.carousel-agap2-pager {
   position: fixed;
   bottom: 10vh;
   left: 40vw;
@@ -125,13 +125,13 @@ body {
   z-index: 10000;
 }
 
-.active .carousel-agap2pager-item {
+.active .carousel-agap2-pager-item {
   width: 4px;
   height: 40px;
   /* background-color: #fff; */
 }
 
-.carousel-agap2pager-item {
+.carousel-agap2-pager-item {
   width: 2px;
   height: 20px;
   border-radius: 4px;
@@ -139,7 +139,7 @@ body {
   transition: height 1s ease;
 }
 
-.carousel-agap2pager button {
+.carousel-agap2-pager button {
   position: relative;
   padding: 0 8px;
   margin: 0 2px;
@@ -2662,6 +2662,14 @@ body {
 
 .home-cover h1 .line {
   overflow: hidden;
+}
+
+.home-cover {
+  background-color: #fff;
+}
+
+#__next {
+  background-color: #fff;
 }
 
 .home-cover h1 [data-cartapus] .word {
