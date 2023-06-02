@@ -256,7 +256,6 @@ class MeshItem {
       this.sizes.y
     );
     this.uniforms.mouse.value = new THREE.Vector2(e.clientX, e.clientY);
-    // console.log(-(target - current) * 0.0003)
   }
 }
 

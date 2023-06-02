@@ -25,6 +25,7 @@
     "eslint-config-next": "13.1.5",
     "framer-motion": "^8.5.5",
     "gl-react": "^5.2.0",
+    "gl-react-dom": "^5.2.1",
     "glsl-noise": "^0.0.0",
     "glslify": "^7.1.1",
     "gsap": "^3.11.4",

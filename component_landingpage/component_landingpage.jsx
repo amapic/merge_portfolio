@@ -6,19 +6,33 @@ import { useEffect, useLayoutEffect, useRef } from "react";
 import { Canvas, useLoader, useFrame, extend } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 
+import { Surface } from "gl-react-dom";
+
 const WaveShaderMaterial2 = shaderMaterial(
   // Uniform
   {
     uTime: 0,
     uColor: new THREE.Color(0.0, 0.0, 0.0),
-    uTexture: new THREE.Texture(),
+    uTexture: new THREE.Texture(1.0, 0.0, 1.0, 0.0),
     uOffset: new THREE.Vector2(0.0, 0.0),
+    uResolution: new THREE.Vector2(2.0, 1.0)
   },
   // Vertex Shader
   `
+  #ifdef GL_ES
+  precision mediump float;
+  #endif
   uniform sampler2D uTexture;
   uniform vec2 uOffset;
+  // out vec2 vUv;
+  // out sampler2D ttext;
   // varying vec2 uv;
+
+  varying vec2 vUv;
+  
+  out vec2 texCoordV;
+
+  in vec2 texCoord;
   
   #define M_PI 3.1415926535897932384626433832795
   
@@ -29,36 +43,36 @@ const WaveShaderMaterial2 = shaderMaterial(
   }
   
   void main() {
-    // vec2 vUv = uv;
+    vec2 vUv = uv;
+    // sampler2D ttext = uTexture;
+    vec2 texCoordV = texCoord;
      vec3 newPosition = deformationCurve(position, uv, uOffset);
      gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
   }
       `,
   // Fragment Shader
   `
-       
+  #ifdef GL_ES
+  precision mediump float;
+  #endif
         uniform sampler2D uTexture;
         uniform vec2 uOffset;
-        // varying vec2 uv;
-    
-
-        vec3 rgbShift(sampler2D textureImage, vec2 uv, vec2 offset) {
-          float r = texture2D(textureImage,uv + offset).r;
-          vec2 gb = texture2D(textureImage,uv).gb;
-          return vec3(r,gb);
-        }
+        uniform vec2 uResolution;
+       
     
         void main() {
-          // vec2 vUv = uv;
-          // vec3 color = rgbShift(uTexture,uv,uOffset);
-          gl_FragColor = vec4(vec3(1.,1.,1.),1.);
+          vec2 uResolution2=vec2(2.,1.);
+          vec2 vUv = gl_FragCoord.xy / uResolution.xy;
+
+          gl_FragColor = texture(uTexture,vUv);
+          
         }
       `
 );
 
 extend({ WaveShaderMaterial2 });
 
-function Ahah({ TriggerFunc,CurrentFunc }) {
+function Ahah({ TriggerFunc, CurrentFunc }) {
   const current2 = useRef(0);
   const target = useRef(0);
   const ease = useRef(0.075);
@@ -71,18 +85,26 @@ function Ahah({ TriggerFunc,CurrentFunc }) {
         return start * (1 - t) + end * t;
       }
       current2.current = lerp(current2.current, target.current, ease.current);
-    }
 
-    CurrentFunc(current2.current);
+      CurrentFunc(lerp(current2.current, target.current, ease.current));
+
+    }
   });
 
   useEffect(() => {
     if (window) {
       window.addEventListener("scroll", () => {
-        if (trigger.current == false) {
-          trigger.current = true;
-          setTimeout((trigger.current = true), 3000);
-        }
+        // if (trigger.current == false) {
+        trigger.current = true;
+        current2.current = window.scrollY;
+
+        // console.log("fgdf",)
+        TriggerFunc(true);
+        // setTimeout(() => {
+        //   trigger.current = false;
+        //   TriggerFunc(false);
+        // }, 3000);
+        // }
       });
     }
   }, []);
@@ -90,10 +112,27 @@ function Ahah({ TriggerFunc,CurrentFunc }) {
   return <></>;
 }
 
+const shaders = Shaders.create({
+  helloBlue: {
+    frag: GLSL`
+precision highp float;
+varying vec2 uv;
+uniform float blue;
+void main() {
+  gl_FragColor = vec4(1., 1., 1., 1.0);
+}`,
+  },
+});
+
+function Test_gl_react() {
+  let blue = 1.0;
+  return <Node shader={shaders.helloBlue} uniforms={{ blue }} />;
+}
+
 export function Home({ Component, pageProps }) {
   const image = useLoader(
     THREE.TextureLoader,
-    "https://images.unsplash.com/photo-1604011092346-0b4346ed714e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1534&q=80"
+    "blackgit.png"
   );
 
   // const material = new WaveShaderMaterial2({
@@ -102,17 +141,27 @@ export function Home({ Component, pageProps }) {
   // material.uTime = 1;
   // material.uTexture = image;
   const ref = useRef();
+  const trigger = useRef(false);
 
   const material = useRef(0);
 
+  useEffect(() => {
+    if (window) {
+      console.log("ee",window.devicePixelRatio)
+    }
+  }, []);
+
   function TriggerFunc(aa) {
     trigger.current = aa;
-    console.log("rrrr")
   }
 
   function CurrentFunc(aa) {
     trigger.current = aa;
-    material.current.material.uniforms.uOffset.value=new THREE.Vector2(0.0,aa)
+    material.current.needsUpdate = true;
+    material.current.material.uniforms.uOffset.value = new THREE.Vector2(
+      0.0,
+      -(0 - aa) * 0.0003
+    );
   }
 
   return (
@@ -124,7 +173,7 @@ export function Home({ Component, pageProps }) {
         position: "absolute",
       }}
     >
-      <span
+      {/* <span
         style={{
           background: "white",
           height: "10vh",
@@ -132,10 +181,17 @@ export function Home({ Component, pageProps }) {
           position: "fixed",
         }}
       >
-        {material.current
+        {material.current.material && material.current.material.uniforms.uOffset.value.y
           ? material.current.material.uniforms.uOffset.value.y
           : ""}
-      </span>
+      </span> */}
+      <div
+      id="aaaa"
+      >
+      {/* <Surface width={300} height={300}>
+        <Test_gl_react />
+      </Surface> */}
+      </div>
       <div
         style={{
           background: "black",
@@ -143,6 +199,7 @@ export function Home({ Component, pageProps }) {
           width: "100vw",
           position: "fixed",
           top: "10vh",
+          // display:"none"
         }}
       >
         <Canvas
@@ -156,7 +213,8 @@ export function Home({ Component, pageProps }) {
           }}
           ref={ref}
         >
-          <Ahah CurrentFunc={CurrentFunc} TriggerFunc={TriggerFunc} />
+          {/* <Ahah CurrentFunc={CurrentFunc} TriggerFunc={TriggerFunc} /> */}
+
           <ambientLight intensity={0.3} />
           <spotLight position={[10, 10, 10]} angle={45} penumbra={1} />
           <pointLight position={[-10, -10, -10]} />
@@ -164,12 +222,16 @@ export function Home({ Component, pageProps }) {
             <planeGeometry args={[3, 4, 16, 16]} />
             <waveShaderMaterial2
               key={WaveShaderMaterial2.key}
-              uColor={"hotpink"}
               uTime={0.0}
               uTexture={image}
-              uoffset={0.0}
+              uOffset={0.0}
+              uResolution={[window.devicePixelRatio,1]}
+              // map={image}
             />
-            {/* <THREE.MeshStandardMaterial color={white} /> */}
+            {/* <meshStandardMaterial 
+            map={image}
+            // color={"white"} 
+            /> */}
 
             {/* <meshStandardMaterial
             // emissiveIntensity={4}

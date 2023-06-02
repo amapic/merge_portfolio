@@ -177,7 +177,6 @@ export default function Scene() {
     }
   });
 
-  // console.log("rr",refDataSystemes.current)
 
   return (
     <>

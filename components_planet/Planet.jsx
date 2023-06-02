@@ -155,33 +155,7 @@ export default function Planet({ compteur, image,imageData, ...args }) {
           // emissiveIntensity={0.1}
         />
       </animated.mesh>
-      {/* <animated.mesh
-        ref={sphereRef}
-        {...args}
-        onClick={() => {
-          clickedd.current = true;
-          updateData(image);
-        }}
-        onPointerOver={() => {
-          debouncedHandleMouseLeave.cancel();
-          hover(true);
-        }}
-        onPointerOut={(x) => {
-          debouncedHandleMouseLeave();
-        }}
-      >
-        <sphereGeometry args={[image.radius* 2, 32, 32]} />
-        <meshNormalMaterial
-        transparent={true}
-        opacity={0}
-        // transparent
-          // map={colorMap[0]}
-          // map={image.Mmap}
-          // toneMapped={false}
-          color={[255, 128, 0]}
-          // emissiveIntensity={0.1}
-        />
-      </animated.mesh> */}
+    
     </>
   );
 }

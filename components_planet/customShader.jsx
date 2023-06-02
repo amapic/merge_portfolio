@@ -9,17 +9,17 @@ import { useRef } from "react";
 import { Shaders, Node, GLSL } from "gl-react";
 
 import React from "react";
-const shaders = Shaders.create({
-  helloBlue: {
-    frag: GLSL`
-precision highp float;
-varying vec2 uv;
-uniform float blue;
-void main() {
-  gl_FragColor = vec4(uv.x, uv.y, blue, 1.0);
-}`,
-  },
-});
+// const shaders = Shaders.create({
+//   helloBlue: {
+//     frag: GLSL`
+// precision highp float;
+// varying vec2 uv;
+// uniform float blue;
+// void main() {
+//   gl_FragColor = vec4(uv.x, uv.y, blue, 1.0);
+// }`,
+//   },
+// });
 
 export class HelloBlue extends React.Component {
   render() {
@@ -151,6 +151,9 @@ export const WaveShaderMaterial2 = shaderMaterial(
    
       varying vec2 vUv;
       varying float vWave;
+      in vec2 texCoord;
+ 
+      out vec2 texCoordV;
   
       uniform float uTime;
   
@@ -158,6 +161,8 @@ export const WaveShaderMaterial2 = shaderMaterial(
   
       void main() {
         vUv = uv;
+
+        texCoordV = texCoord;
   
         vec3 pos = position;
         float noiseFreq = 2.0;
@@ -181,9 +186,10 @@ export const WaveShaderMaterial2 = shaderMaterial(
       varying float vWave;
   
       void main() {
-        float wave = vWave * 0.2;
-        vec3 texture = texture2D(uTexture, vUv + wave).rgb;
-        gl_FragColor = vec4(texture, 1.0); 
+        // float wave = vWave * 0.2;
+        // vec3 texture = texture2D(uTexture, vUv + wave).rgb;
+        gl_FragColor = texture(uTexture, texCoordV);
+        // gl_FragColor = vec4(texture, 1.0); 
       }
     `
 );

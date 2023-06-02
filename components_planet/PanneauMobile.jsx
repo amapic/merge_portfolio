@@ -9,10 +9,6 @@ import { Draggable } from "gsap/dist/Draggable";
 
 import Parser from "html-react-parser";
 
-// import PanelHeader from "./components/PanelHeader";
-// import Resizer from "./components/Resizer";
-
-// import { Direction } from "./components/Resizer/constants";
 
 import Panel from "./resizer/Panel";
 
@@ -40,14 +36,12 @@ export default function PanelGauche() {
         duration: 1,
         clipPath:
           "polygon(5% 0%, 95% 0%,100% 13px, 100% calc(100% - 14px), 95% 100%,0% 100%,0% 13px)",
-        // backgroundColor: "blue",
       });
     } else {
       gsap.to(ref.current, {
         backgroundColor: "teal",
         duration: 1,
         height: "30%",
-        // backgroundColor: "blue",
       });
     }
 

@@ -18,9 +18,7 @@ import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 
 import PanelGauche, { PanelPlanete } from "../components_planet/PanneauMobile";
 
-// import roboto from "../public/Roboto_Regular.json";
 
-// const font = new FontLoader().parse(roboto);
 
 import {
   Stats,
@@ -42,7 +40,6 @@ import Carousel from "../components_planet/Carousel";
 
 import Navv from "../components_planet/Nav";
 
-// import FrameLimiter, { FPSLimiter } from "../components_planet/FrameLimiter";
 
 extend({ UnrealBloomPass });
 
@@ -59,12 +56,6 @@ export const AppContext = createContext();
 
 import { Html, useProgress } from '@react-three/drei'
 
-// import styles from 'styles/planet.module.css';
-
-// function Loader() {
-//   const { progress } = useProgress()
-//   return <Html center>{progress} % loaded</Html>
-// }
 
 const App = () => {
   // const cam = useRef();
@@ -89,9 +80,7 @@ const App = () => {
 
     return isTouchDevice;
   }
-  // var isNotTouchDevice = true;
 
-  // const { name, updateData } = usePlanetStore((state) => state);
 
   const {
     nActive,
@@ -149,40 +138,15 @@ const App = () => {
                   height: "100vh",
                   width: "100vw",
                   backgroundColor: "#252934",
-                  // display: _isMobile?"none":"block" ,
                 }}
               >
                 <PanelGauche />
 
                 <Carousel />
                 <Navv />
-                {/* <div
-              style={{
-                height: "15vh",
-                width: "40vh",
-                position:"fixed",
-                right:"5vw",
-                bottom:"40vh",
-                display:"flex",
-                flexDirection:"row",
-                justifyContent:"space-between",
-                zIndex:"10000"
-              }}
-              >
-                 
-                 <a style={{
-                  cursor: "pointer"
-                 }} href="http://46.101.250.41:4000/agap2/agap2.html"><img height="100%" width="50vh" src="/planet/image/fleche_gauche.svg"/></a>
-                 <a 
-                 style={{
-                  cursor: "pointer"
-                 }}
-                 href="http://46.101.250.41:4000/siteWeb1/index.html"><img height="100%" width="50vh" src="/planet/image/fleche_droit.svg"/></a>
-              </div>  */}
+                
 
                 <Canvas
-                  // concurrent="true"
-                  // dpr={[1, 2]}
                   gl={{ antialias: false }}
                   camera={{
                     near: 0.1,
@@ -193,16 +157,11 @@ const App = () => {
                   }}
                   onCreated={({ gl, camera }) => {
                     gl.setClearColor("#252934", 0);
-                    // gl.setClearColor("#000", 1);
-                    // 252934
                     camera.lookAt(0, 0, 0);
-                    // camera.position.set(4, 4, 4);
 
                     camera.position.set(10, 3, 10);
                   }}
                 >
-                  {/* <Suspense fallback={null}> */}
-                  {/* <Suspense fallback={<Loader />}> */}
                   <EffectComposer>
                     <Bloom
                       luminanceThreshold={luminanceThreshold}
@@ -213,35 +172,7 @@ const App = () => {
                       radius={radius}
                     />
                   </EffectComposer>
-                  {/* <sprite position={[1, 2, 3]}>
-              <Spprite />
-            </sprite> */}
-                  {/* <Hud>
-              <EffectComposer>
-                <Bloom
-                  luminanceThreshold={luminanceThreshold}
-                  luminanceSmoothing={luminanceSmoothing}
-                  // height={300},
-                  mipmapBlur={true}
-                  intensity={intensity}
-                  radius={radius}
-                />
-              </EffectComposer>
-              <PerspectiveCamera makeDefault position={[0, 0, 10]} />
-            </Hud> */}
-                  {/* <FrameLimiter /> */}
-                  {/* <FPSLimiter /> 
-            // <Effects disableGamma>
-            //   <unrealBloomPass
-            //     threshold={1}
-            //     strength={intensity}
-            //     radius={radius}
-            //   />
-            // </Effects>*/}
-                  {/* <Line position={[0, 0, 0]} /> */}
-                  {/* <BoxBlendGeometry /> */}
-                  {/* <Prout /> */}
-                  {/* <Stats /> */}
+                  
                   <OrbitControls
                     // maxPolarAngle={0.85}
                     maxDistance={20}
@@ -259,7 +190,6 @@ const App = () => {
                   <Physics allowSleep={false} gravity={[0, 0, 0]}>
                     <Scene />
                   </Physics>
-                  {/* </Suspense> */}
                 </Canvas>
               </div>
               <div
@@ -359,29 +289,12 @@ const App = () => {
                     rotation={[Math.PI, 0, 0]}
                   />
 
-                  {/* <BoxBlendGeometry position={[0, 0, 0]} /> */}
                 </Canvas>
               </div>
             </>
-            {/* ) : ( */}
-            {/* <div
-            style={{
-              backgroundColor: "white",
-              height: "100vh",
-              width: "100wh",
-              color: "black",
-              textAlign: "center",
-              lineHeight: "25vh",
-              display: _isMobile?"block":"none" ,
-            }}
-          >
-            Site non prévu pour Smartphone
-          </div> */}
-            {/* </Suspense> */}
           </FadeInOut>
         </TransitionLayout>
       </TransitionProvider>
-      {/* </Canvas> */}
     </>
   );
 };

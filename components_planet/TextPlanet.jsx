@@ -5,7 +5,6 @@ import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 
-// import roboto from "../public/Roboto_Regular.json";
 
 import * as THREE from "three";
 
@@ -131,12 +130,8 @@ export default function TextPlanet({
               anchorX="center" // default
               anchorY="middle" // default
               color="white"
-              // ref={myMesh}
-              // fillOpacity={hoveredd ? 1 : 0}
               toneMapped={false}
-              // transparent={star ? true : false}
             >
-              {/* {clickedd ? "cliqué" : ""} */}
               {text}
             </Text>
           </mesh>
